@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasintha ❤️ Janakya</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hearts" aria-hidden="true"><span>♥</span><span>♡</span><span>♥</span><span>♡</span><span>♥</span><span>♡</span></div>
+  <main>
+    <section class="opening" id="home">
+      <div class="opening-content">
+        <p class="eyebrow">A LITTLE SURPRISE FOR YOU</p>
+        <h1>Hey Janakya...</h1>
+        <p>I made something special just for you.</p>
+        <button class="primary-button" id="openSurprise" type="button">Open My Little Surprise</button>
+        <span class="signature"> For You...</span>
+      </div>
+    </section>
+  </main>
+  <div class="code-panel" id="codePanel" role="dialog" aria-modal="true" aria-labelledby="codeTitle" hidden>
+    <form class="code-card" id="codeForm">
+      <p class="eyebrow">A LITTLE SECRET</p>
+      <h2 id="codeTitle">Enter the code</h2>
+      <p>Type the special code to open your surprise.</p>
+      <label class="visually-hidden" for="accessCode">Access code</label>
+      <input id="accessCode" name="accessCode" type="password" inputmode="numeric" maxlength="4" placeholder="••••" autocomplete="off" required>
+      <p class="code-error" id="codeError" role="alert" hidden>That code is not quite right. Try again.</p>
+      <div class="code-actions"><button class="primary-button" type="submit">Unlock my surprise</button><button class="code-cancel" id="closeCode" type="button">Maybe later</button></div>
+    </form>
+  </div>
+  <script>
+    const ACCESS_CODE = "0806";
+    const codePanel = document.getElementById("codePanel");
+    const codeInput = document.getElementById("accessCode");
+    const codeError = document.getElementById("codeError");
+    document.getElementById("openSurprise").addEventListener("click", () => {
+      codePanel.hidden = false;
+      codeInput.focus();
+    });
+    document.getElementById("closeCode").addEventListener("click", () => {
+      codePanel.hidden = true;
+      codeError.hidden = true;
+      codeInput.value = "";
+    });
+    document.getElementById("codeForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (codeInput.value.trim() === ACCESS_CODE) {
+        window.location.href = "story.html";
+        return;
+      }
+      codeError.hidden = false;
+      codeInput.select();
+    });
+    codePanel.addEventListener("click", (event) => {
+      if (event.target === codePanel) document.getElementById("closeCode").click();
+    });
+  </script>
+</body>
+</html>
+
